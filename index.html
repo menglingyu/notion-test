@@ -5,10 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script>
-      var rings = 40;
-      var space = 10;
-    </script>
     <style>
       body {
         font-size: 62.5%;
@@ -557,7 +553,7 @@
         <li></li>
         <li></li>
       </ul>
-      <div class="digital-wrap">
+      <!-- <div class="digital-wrap">
         <ul class="digit-hours">
           <li>23</li>
           <li>00</li>
@@ -708,7 +704,7 @@
           <li>18</li>
           <li>19</li>
         </ul>
-      </div>
+      </div> -->
       <ul class="digits">
         <li>1</li>
         <li>2</li>
@@ -728,4 +724,31 @@
       <div class="seconds-hand"></div>
     </div>
   </body>
+  <script>
+    var date = new Date(); //获取当前时间
+    var h = date.getHours(); //获取时
+    var m = date.getMinutes(); //获取分
+    var s = date.getSeconds(); //获取秒
+
+    var hDeg = ((h * 3600 + m * 60 + s) / (3600 * 12)) * 360; //时针角度
+    var mDeg = ((m * 60 + s) / 3600) * 360; //分针角度
+    var sDeg = (360 / 60) * s; //秒针角度
+
+    console.log(
+      `
+        ${hDeg}
+        ${mDeg}
+        ${sDeg}
+      `
+    );
+
+    var hours = document.querySelector("#watch > div.hours-hand");
+    hours.style.transform = `rotate(${hDeg}deg)`;
+
+    var minutes = document.querySelector("#watch > div.minutes-hand");
+    minutes.style.transform = `rotate(${mDeg}deg)`;
+
+    var seconds = document.querySelector("#watch > div.seconds-hand");
+    seconds.style.transform = `rotate(${sDeg}deg)`;
+  </script>
 </html>
